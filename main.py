@@ -28,10 +28,7 @@ while correct_guesses <= len(states_list):
         text.goto(0, 0)
         text.write(f"Thank you for playing!", align="center", font=("Arial", 24, "normal"))
         # Extract missing states into a csv file
-        missing_states = []
-        for state in states_list:
-            if state not in guessed_states:
-                missing_states.append(state)
+        missing_states = [state for state in states_list if state not in guessed_states]
         df = pd.DataFrame(missing_states)
         df.to_csv(f"list_of_{len(missing_states)}_missed_states.csv")
         break
